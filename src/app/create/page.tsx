@@ -28,9 +28,9 @@ export default function CreatePage() {
   // Step 3: Full-screen preview with Create Card button
   if (step === 3) {
     return (
-      <div className="min-h-dvh flex flex-col">
+      <div className="h-dvh flex flex-col overflow-hidden">
         {/* Top bar */}
-        <div className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm">
+        <div className="flex-shrink-0 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between shadow-sm z-10">
           <button
             onClick={() => setStep(2)}
             className="flex items-center gap-1.5 text-gray-600 hover:text-gray-900 font-medium text-sm transition-colors"
@@ -44,16 +44,16 @@ export default function CreatePage() {
           <div className="w-16" /> {/* spacer */}
         </div>
 
-        {/* Full-screen preview */}
-        <div className="flex-1">
+        {/* Preview — fills space between top and bottom bars, scrolls if needed */}
+        <div className="flex-1 min-h-0 overflow-auto">
           <CardPreview
             formData={formData}
             photoPreviewUrls={photoPreviewUrls}
           />
         </div>
 
-        {/* Bottom bar with Create button */}
-        <div className="bg-white border-t border-gray-200 px-6 py-4 shadow-[0_-2px_10px_rgba(0,0,0,0.05)]">
+        {/* Bottom bar with Create button — always visible */}
+        <div className="flex-shrink-0 bg-white border-t border-gray-200 px-6 py-4 shadow-[0_-2px_10px_rgba(0,0,0,0.05)] z-10">
           <EditorPanel
             formData={formData}
             onFieldChange={updateField}
