@@ -1,0 +1,197 @@
+/* =============================================
+   PHOTOS CONTAINER
+   ============================================= */
+.card-viewer .photos-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* =============================================
+   PHOTO FRAME
+   ============================================= */
+.card-viewer .photo-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  padding: clamp(4px, 0.6vw, 7px);
+  border-radius: 4px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.06);
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.5s ease 0.45s, transform 0.5s ease 0.45s;
+  z-index: 1;
+}
+
+.card-viewer .present-box.unwrapped .photo-frame {
+  opacity: 1;
+  transform: scale(1);
+  cursor: pointer;
+}
+
+.card-viewer .photo-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}
+
+/* =============================================
+   PRESENT BOXES
+   ============================================= */
+.card-viewer .present-box {
+  position: absolute;
+  width: var(--photo-size);
+  height: var(--photo-size);
+  cursor: pointer;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.85) var(--photo-rotate, rotate(0deg));
+  transition:
+    opacity var(--photo-fade-duration) ease var(--photo-delay, 0.8s),
+    transform var(--photo-fade-duration) ease var(--photo-delay, 0.8s);
+}
+
+.card-viewer .envelope-scene.state-open .present-box {
+  opacity: 1;
+  transform: scale(1) var(--photo-rotate, rotate(0deg));
+  pointer-events: auto;
+  animation: present-float var(--float-duration, 4s) ease-in-out var(--float-delay, 0s) infinite;
+}
+
+@keyframes present-float {
+  0%, 100% { translate: 0 0; }
+  25%      { translate: 3px -4px; }
+  50%      { translate: -2px -6px; }
+  75%      { translate: -4px -2px; }
+}
+
+/* Present body */
+.card-viewer .present-body {
+  position: absolute;
+  inset: 0;
+  background: var(--present-bg, #e74c6f);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.15), inset 0 -4px 8px rgba(0,0,0,0.1);
+  transition:
+    transform var(--present-unwrap-duration) cubic-bezier(0.4, 0, 0.2, 1) 0.2s,
+    opacity 0.3s ease 0.4s;
+}
+
+.card-viewer .present-box.unwrapped .present-body {
+  transform: scale(0.05);
+  opacity: 0;
+}
+
+/* Ribbons */
+.card-viewer .present-ribbon-h,
+.card-viewer .present-ribbon-v {
+  position: absolute;
+  background: var(--present-ribbon, #ffd700);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-viewer .present-ribbon-h {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 12%;
+  transform: translateY(-50%);
+}
+
+.card-viewer .present-ribbon-v {
+  top: 0;
+  left: 50%;
+  width: 12%;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+/* Lid */
+.card-viewer .present-lid {
+  position: absolute;
+  top: -8%;
+  left: -3%;
+  width: 106%;
+  height: 28%;
+  background: var(--present-bg-dark, #c43558);
+  border-radius: 4px 4px 2px 2px;
+  z-index: 5;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transform-origin: center bottom;
+  transition:
+    transform var(--present-unwrap-duration) cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s ease 0.3s;
+}
+
+.card-viewer .present-box.unwrapped .present-lid {
+  transform: translateY(-130%) rotateX(-25deg) scale(0.9);
+  opacity: 0;
+}
+
+/* Ribbon on lid */
+.card-viewer .present-ribbon-v-lid {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 12%;
+  height: 100%;
+  background: var(--present-ribbon, #ffd700);
+  transform: translateX(-50%);
+}
+
+/* Bow */
+.card-viewer .present-bow {
+  position: absolute;
+  top: -45%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 70%;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.card-viewer .present-bow::before {
+  content: '';
+  position: absolute;
+  width: 55%;
+  height: 75%;
+  bottom: 10%;
+  right: 48%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: var(--present-ribbon, #ffd700);
+  transform: rotate(-15deg);
+  box-shadow: inset -2px -2px 4px rgba(0,0,0,0.15);
+}
+
+.card-viewer .present-bow::after {
+  content: '';
+  position: absolute;
+  width: 55%;
+  height: 75%;
+  bottom: 10%;
+  left: 48%;
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  background: var(--present-ribbon, #ffd700);
+  transform: rotate(15deg);
+  box-shadow: inset 2px -2px 4px rgba(0,0,0,0.15);
+}
+
+.card-viewer .present-bow-knot {
+  position: absolute;
+  width: 26%;
+  height: 34%;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--present-ribbon, #ffd700);
+  border-radius: 30%;
+  z-index: 1;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}

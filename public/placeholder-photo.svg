@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" fill="none">
+  <rect width="120" height="120" rx="8" fill="#f0f0f0"/>
+  <circle cx="45" cy="42" r="10" fill="#d4d4d4"/>
+  <path d="M20 85 L50 55 L70 75 L85 60 L100 80 V95 C100 97.2 98.2 99 96 99 H24 C21.8 99 20 97.2 20 95 Z" fill="#d4d4d4"/>
+  <rect x="35" y="92" width="50" height="3" rx="1.5" fill="#c0c0c0"/>
+  <path d="M52 105 L60 98 L68 105" stroke="#c0c0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <text x="60" y="115" text-anchor="middle" font-family="system-ui" font-size="9" fill="#b0b0b0">Add Photo</text>
+</svg>

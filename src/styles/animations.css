@@ -1,0 +1,151 @@
+/* =============================================
+   FLOATING BUBBLES
+   ============================================= */
+.card-viewer .bubbles-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-viewer .bubble {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  background:
+    radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      rgba(255, 255, 255, 0.05) 60%,
+      transparent 70%
+    );
+  animation: bubble-rise var(--bubble-duration, 10s) linear infinite;
+  animation-delay: var(--bubble-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes bubble-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  10% { opacity: 0.7; }
+  90% { opacity: 0.85; }
+  100% {
+    transform: translateY(-110vh) translateX(var(--bubble-sway, 30px)) scale(0.8);
+    opacity: 0;
+  }
+}
+
+/* =============================================
+   FLOATING HEARTS
+   ============================================= */
+.card-viewer .hearts-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-viewer .heart {
+  position: absolute;
+  font-size: var(--heart-size, 24px);
+  animation: heart-rise var(--heart-duration, 10s) linear infinite;
+  animation-delay: var(--heart-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes heart-rise {
+  0% {
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.6; }
+  100% {
+    transform: translateY(-110vh) translateX(var(--heart-sway, 30px)) scale(0.6) rotate(var(--heart-rotate, 20deg));
+    opacity: 0;
+  }
+}
+
+/* =============================================
+   FALLING SNOWFLAKES
+   ============================================= */
+.card-viewer .snowflakes-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-viewer .snowflake {
+  position: absolute;
+  top: -20px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--snow-size, 16px);
+  animation: snowflake-fall var(--snow-duration, 10s) linear infinite;
+  animation-delay: var(--snow-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes snowflake-fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translateY(110vh) translateX(var(--snow-sway, 30px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* =============================================
+   FALLING CONFETTI
+   ============================================= */
+.card-viewer .confetti-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.card-viewer .confetti-piece {
+  position: absolute;
+  top: -30px;
+  animation: confetti-fall var(--confetti-duration, 8s) linear infinite;
+  animation-delay: var(--confetti-delay, 0s);
+  opacity: 0;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.9; }
+  90% { opacity: 0.7; }
+  100% {
+    transform: translateY(110vh) translateX(var(--confetti-sway, 30px)) rotate(var(--confetti-rotate, 360deg));
+    opacity: 0;
+  }
+}
+
+/* =============================================
+   REDUCED MOTION — animations
+   ============================================= */
+@media (prefers-reduced-motion: reduce) {
+  .card-viewer .bubble,
+  .card-viewer .heart,
+  .card-viewer .snowflake,
+  .card-viewer .confetti-piece {
+    animation: none !important;
+    opacity: 0.3 !important;
+  }
+}
