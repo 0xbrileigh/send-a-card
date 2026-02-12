@@ -66,21 +66,15 @@ export function EnvelopeScene({
   });
   const tiltMultiplierRef = useRef(initialState === 'open' ? 0 : 1.0);
   const [isTouch, setIsTouch] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
 
-  // Detect touch and reduced motion
+  // Detect touch devices
   useEffect(() => {
     setIsTouch('ontouchstart' in window || navigator.maxTouchPoints > 0);
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
-    const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
-    mq.addEventListener('change', handler);
-    return () => mq.removeEventListener('change', handler);
   }, []);
 
   // Animation loop (tilt + breathing)
   useEffect(() => {
-    if (preview || reducedMotion) return;
+    if (preview) return;
 
     function loop(timestamp: number) {
       const t = tiltRef.current;
@@ -109,11 +103,11 @@ export function EnvelopeScene({
     return () => {
       if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
-  }, [preview, reducedMotion, state]);
+  }, [preview, state]);
 
   // Mouse move handler for tilt
   useEffect(() => {
-    if (preview || isTouch || reducedMotion) return;
+    if (preview || isTouch) return;
 
     function handleMouseMove(e: MouseEvent) {
       const cx = window.innerWidth / 2;
@@ -142,7 +136,7 @@ export function EnvelopeScene({
       document.removeEventListener('mousemove', handleMouseMove);
       document.documentElement.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [preview, isTouch, reducedMotion]);
+  }, [preview, isTouch]);
 
   const transition = useCallback(() => {
     if (preview) return;

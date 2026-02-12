@@ -408,41 +408,6 @@
 }
 
 /* =============================================
-   REDUCED MOTION
-   ============================================= */
-@media (prefers-reduced-motion: reduce) {
-  .card-viewer .envelope-wrapper {
-    animation: none !important;
-  }
-
-  .card-viewer .envelope-inner,
-  .card-viewer .letter-container,
-  .card-viewer .photo-frame,
-  .card-viewer .flap-front,
-  .card-viewer .prompt-text,
-  .card-viewer .present-box,
-  .card-viewer .present-lid,
-  .card-viewer .present-body,
-  .card-viewer .scroll-prompt,
-  .card-viewer .lightbox,
-  .card-viewer .lightbox-img {
-    transition-duration: 0.001s !important;
-    transition-delay: 0s !important;
-  }
-
-  .card-viewer .bubble,
-  .card-viewer .scroll-arrow,
-  .card-viewer .present-box {
-    animation: none !important;
-  }
-
-  .card-viewer .bubble,
-  .card-viewer .scroll-arrow {
-    opacity: 0.3 !important;
-  }
-}
-
-/* =============================================
    RESPONSIVE — small screens
    ============================================= */
 @media (max-width: 480px) {

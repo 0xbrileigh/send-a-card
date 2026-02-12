@@ -137,15 +137,3 @@
   }
 }
 
-/* =============================================
-   REDUCED MOTION — animations
-   ============================================= */
-@media (prefers-reduced-motion: reduce) {
-  .card-viewer .bubble,
-  .card-viewer .heart,
-  .card-viewer .snowflake,
-  .card-viewer .confetti-piece {
-    animation: none !important;
-    opacity: 0.3 !important;
-  }
-}
